@@ -1,14 +1,12 @@
 import {
-  TODO_LIST_CREATED, 
-  TODO_ITEM_CREATED, 
+  TODO_ITEM_CREATED,
   TODO_COMPLETED
 } from '../eventTypes';
 
 export default {
-  Init: () => null,
-  [TODO_LIST_CREATED]: (state, {aggregateId, payload: {name}}) => ({
-    id: aggregateId,
-    name,
+  Init: () => ({
+    id: 'Todo-list-1',
+    name: 'Todo-list-1',
     list: []
   }),
   [TODO_ITEM_CREATED]: (state, {payload: {id, text}}) => ({
@@ -25,7 +23,7 @@ export default {
   [TODO_COMPLETED]: (state, {payload: {id}}) => ({
     ...state,
     list: state.list.map(task =>
-      task.id === id 
+      task.id === id
       ? {
         ...task,
         mark: !task.mark
